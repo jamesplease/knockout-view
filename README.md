@@ -5,7 +5,7 @@ When building a project with [Knockout.js](http://knockoutjs.com/), you might, a
 
 [**Check out a live example.**](http://jmeas.com/projects/ko.js-debugger/)
 
-_The source the example is simply everything in the `/source` directory of this repository_
+_The source of the example is simply everything in the `/source` directory of this repository_
 
 ##Usage
 
