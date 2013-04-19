@@ -11,7 +11,7 @@ _The source of the example is that which is in the `/source` directory_
 
 There are three components to this tool: some `html`, a `.css` file, and a `.js` file. To use the tool, just include the three pieces in your project and make sure that they're properly referenced. For the sake of completeness, here's how to do that:
 
-##The HTML
+###The HTML
 
 The HTML consists of a `div` that holds the toggle button and data window. It can go anywhere at all within the `body` tag of your document, as its set to `fixed` positioning in the `css`.
 
@@ -23,13 +23,13 @@ The HTML consists of a `div` that holds the toggle button and data window. It ca
       </div>
     </div>
 
-##The CSS
+###The CSS
 
 The CSS file provides the divs with some styling. You can load it in the `header` of your file with a `link` element:
 
     <link rel="stylesheet" href="/css/kojs-debugger.css">
 
-##The JavaScript
+###The JavaScript
 
 Place the script element for the Javascript toward the bottom of your page.
 
