@@ -1,0 +1,39 @@
+.kojs-debugger {
+  font-family: Arial;
+  position: fixed;
+  z-index: 99999;
+  left: 10px;
+  top: 10px;
+}
+.kojs-debugger button {
+  width: 150px;
+  cursor: pointer;
+  background: rgba(255,255,255,.8);
+  -webkit-border-radius:6px;
+  -moz-border-radius:6px;
+  border-radius:6px;
+  border:1px solid #dcdcdc;
+  display:inline-block;
+  color:#a1afc4;
+  font-family:arial;
+  font-size:14px;
+  padding:6px 15px;
+  text-decoration:none;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1);
+  margin-bottom: 10px;
+}
+.kojs-debugger button:hover {
+  box-shadow: 1px 2px 1px rgba(0,0,0,.1);
+}
+.kojs-debugger pre {
+  max-height: 500px;
+  max-width: 450px;
+  overflow: auto;
+  border-radius:6px;
+  margin: 0;
+  background: rgba(255,255,255,.8);
+  padding: 20px;
+  border:1px solid #dcdcdc;
+  color:#a1afc4;
+  box-shadow: 0px 1px 3px rgba(0,0,0,.2);
+}
