@@ -41,10 +41,6 @@ Place the script element for the Javascript toward the bottom of your page.
 
 - Knockout.js
 
-##Customization
-
-If you look at the source, you'll see that this really isn't _that_ complicated a tool. It shouldn't be too difficult to change it without breaking it. I encourage you to look at the source and adapt it as you see fit.
-
 ##Licensing
 
 This is released under the BSD license. That means you can do whatever you want with it.
