@@ -49,7 +49,3 @@ This is released under the BSD license. That means you can do whatever you want 
 
 _I'd like to thank Ryan Niemeyer for writing [the first article](http://www.knockmeout.net/2011/06/10-things-to-know-about-knockoutjs-on.html) that I read which mentioned using the `ko.toJSON` utility to debug your viewModel, which ultimately inspired me to make this thing._
 
-##To-Do
-
-- [ ] Make a better example page
-
