@@ -1,4 +1,7 @@
-// The viewData namespace handles our viewModel
+// This isn't a critical component to the ko.js debugger. It's merely an example
+// of how I implement view models in my webapps.
+
+// This namespace handles everything regarding our viewModel
 
 (function( viewData, undefined ) {
   
