@@ -1,15 +1,15 @@
 ko.js-debugger
 ==============
 
-When building a project with Knockout.js, you might, at times, find yourself wanting to see what your `View Model` looks like. This simple tool lets you do just that with a toggle-able, non-intrusive `View Model` display.
+When building a project with [Knockout.js](http://knockoutjs.com/), you might, at times, find yourself wanting to see what your `View Model` looks like. This simple tool lets you do that with a toggle-able, non-intrusive `View Model` display.
 
 [**Check out a live example.**](http://jmeas.com/projects/ko.js-debugger/)
 
-_The source of the example is that which is in the `/source` directory_
+_The source the example is simply everything in the `/source` directory of this repository_
 
 ##Usage
 
-There are three components to this tool: some `html`, a `.css` file, and a `.js` file. To use the tool, just include the three pieces in your project and make sure that they're properly referenced. For the sake of completeness, here's how to do that:
+There are three components to this tool: some `html`, a `.css` file, and a `.js` file. To use the tool, just include the three pieces in your project and make sure that they're properly referenced.
 
 ###The HTML
 
@@ -23,9 +23,11 @@ The HTML consists of a `div` that holds the toggle button and data window. It ca
       </div>
     </div>
 
+_Note: be sure to update the first parameter of the `ko.toJSON` function to match the variable that is storing your view model_
+
 ###The CSS
 
-The CSS file provides the divs with some styling. You can load it in the `header` of your file with a `link` element:
+The CSS file provides the divs with some styling. You can load it in the `header` of your page with a `link` element:
 
     <link rel="stylesheet" href="/css/kojs-debugger.css">
 
@@ -41,7 +43,7 @@ Place the script element for the Javascript toward the bottom of your page.
 
 ##Customization
 
-If you look at the source, you'll see that this isn't _that_ complicated a tool. It shouldn't be too difficult to change the tool to make it how you'd like without breaking it. I definitely encourage you to look at the source and adapt this to your particular needs.
+If you look at the source, you'll see that this really isn't _that_ complicated a tool. It shouldn't be too difficult to change it without breaking it. I encourage you to look at the source and adapt it as you see fit.
 
 ##Licensing
 
