@@ -1,7 +1,9 @@
 ko.js-debugger
 ==============
 
-When building a project with [Knockout.js](http://knockoutjs.com/), you might, at times, find yourself wanting to see what your `View Model` looks like. This little tool lets you do that with a toggle-able, minimally-intrusive display.
+_version 0.9.0_
+
+When building a project with [Knockout.js](http://knockoutjs.com/), you might, at times, want to see what your `View Model` looks like. This little tool lets you do that with a toggle-able, minimally-intrusive display.
 
 [**Check out a live example** @ http://jmeas.com/projects/ko.js-debugger/](http://jmeas.com/projects/ko.js-debugger/)
 
@@ -47,3 +49,6 @@ This is released under the [WTFPL](http://www.wtfpl.net/); that means you can do
 
 _I'd like to thank Ryan Niemeyer for writing [the first article](http://www.knockmeout.net/2011/06/10-things-to-know-about-knockoutjs-on.html) that I read which mentioned using the `ko.toJSON` utility to debug your viewModel, which ultimately inspired me to make this thing._
 
+##Version 1.0
+
+Version 1 will include a filtering system. This will allow you to show only computed values, for instance, or otherwise other specific pieces of your view model. This feature should help with debugging the largest of view models.
