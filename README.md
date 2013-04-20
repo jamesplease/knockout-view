@@ -43,7 +43,7 @@ Place the script element for the Javascript toward the bottom of your page.
 
 ##Licensing
 
-This is released under the BSD license. That means you can do whatever you want with it.
+Don't worry about licenses; do whatever you want with it.
 
 _I'd like to thank Ryan Niemeyer for writing [the first article](http://www.knockmeout.net/2011/06/10-things-to-know-about-knockoutjs-on.html) that I read which mentioned using the `ko.toJSON` utility to debug your viewModel, which ultimately inspired me to make this thing._
 
