@@ -1,9 +1,9 @@
 ko.js-debugger
 ==============
 
-When building a project with [Knockout.js](http://knockoutjs.com/), you might, at times, find yourself wanting to see what your `View Model` looks like. This simple tool lets you do that with a toggle-able, non-intrusive `View Model` display.
+When building a project with [Knockout.js](http://knockoutjs.com/), you might, at times, find yourself wanting to see what your `View Model` looks like. This little tool lets you do that with a toggle-able, minimally-intrusive display.
 
-[**Check out a live example.**](http://jmeas.com/projects/ko.js-debugger/)
+[**Check out a live example** @ http://jmeas.com/projects/ko.js-debugger/](http://jmeas.com/projects/ko.js-debugger/)
 
 _The source of the example is simply everything in the `/source` directory of this repository_
 
@@ -33,7 +33,7 @@ The CSS file provides the divs with some styling. You can load it in the `header
 
 ###The JavaScript
 
-Place the script element for the Javascript toward the bottom of your page.
+Place this script element for the Javascript toward the bottom of your page.
 
     <script src="/js/ko-debugger.js"></script>
 
