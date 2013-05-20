@@ -9,6 +9,8 @@ When building a project with [Knockout](http://knockoutjs.com/), you might, at t
 
 Copy the code from the `ko-debug.js` file in the `bookmarklet` folder into a new Bookmark in your browser. Then, on any page with a View Model, simply click the Bookmarklet and the display will appear.
 
+Need a page to test it on? Try the [Knockout Tutorial page.](http://learn.knockoutjs.com/#/?tutorial=intro)
+
 You can show and hide the view model with the main button. The `x` will remove the debugger from your page.
 
 ###Caveats
