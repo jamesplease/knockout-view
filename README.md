@@ -13,7 +13,7 @@ You can show and hide the view model with the main button. The `x` will remove t
 
 ###Caveats
 
-This only works on View Models that aren't namespaced. Further, it hasn't been tested on pages with multiple view models.
+This has only been tested on pages with a single view model.
 
 ##Browser Support
 

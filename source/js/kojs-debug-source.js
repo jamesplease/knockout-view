@@ -34,7 +34,7 @@ javascript:
     var viewModelDisplay = document.createElement("pre");
     viewModelDisplay.id = 'ko-debug-display';
     viewModelDisplay.style.display = "none";
-    viewModelDisplay.dataset.bind = "text: ko.toJSON(viewData.myViewModel, null, 2)";
+    viewModelDisplay.dataset.bind = "text: ko.toJSON(data, null, 2)";
 
     var close = function() {
       ko.removeNode(containerDiv);
