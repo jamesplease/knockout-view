@@ -1,13 +1,13 @@
-ko.js-debugger
+knockout-debug
 ==============
 
 _version 1.0.0_
 
-When building a project with [Knockout.js](http://knockoutjs.com/), you might, at times, want to see what your `View Model` looks like. This bookmarklet lets you do that with a toggle-able, minimally-intrusive display.
+When building a project with [Knockout](http://knockoutjs.com/), you might, at times, want to see what your `View Model` looks like. This bookmarklet lets you do that with a toggle-able, minimally-intrusive display.
 
 ##Usage
 
-Copy the code from the `kojs-debug.js` file in the `bookmarklet` folder into a new Bookmark in your browser. Then, on any page with a View Model, simply click the Bookmarklet and the display will appear.
+Copy the code from the `ko-debug.js` file in the `bookmarklet` folder into a new Bookmark in your browser. Then, on any page with a View Model, simply click the Bookmarklet and the display will appear.
 
 You can show and hide the view model with the main button. The `x` will remove the debugger from your page.
 
