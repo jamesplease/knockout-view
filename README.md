@@ -1,54 +1,38 @@
 ko.js-debugger
 ==============
 
-_version 0.9.0_
+_version 1.0.0_
 
-When building a project with [Knockout.js](http://knockoutjs.com/), you might, at times, want to see what your `View Model` looks like. This little tool lets you do that with a toggle-able, minimally-intrusive display.
-
-[**Check out a live example** @ http://jmeas.com/projects/ko.js-debugger/](http://jmeas.com/projects/ko.js-debugger/)
-
-_The source of the example is simply everything in the `/source` directory of this repository_
+When building a project with [Knockout.js](http://knockoutjs.com/), you might, at times, want to see what your `View Model` looks like. This bookmarklet lets you do that with a toggle-able, minimally-intrusive display.
 
 ##Usage
 
-There are three components to this tool: some `html`, a `.css` file, and a `.js` file. To use the tool, just include the three pieces in your project and make sure that they're properly referenced.
+Copy the code from the `kojs-debug.js` file in the `bookmarklet` folder into a new Bookmark in your browser. Then, on any page with a View Model, simply click the Bookmarklet and the display will appear.
 
-###The HTML
+You can show and hide the view model with the main button. The `x` will remove the debugger from your page.
 
-The HTML consists of a `div` that holds the toggle button and data window. It can go anywhere at all within the `body` tag of your document, as its set to `fixed` positioning in the `css`.
+###Caveats
 
-    <div class='kojs-debugger'>
-      <button id='viewModel-toggle'>Show View Model</button>
-      <div>
-        <pre id='viewModel-display' style='display: none;' data-bind='text: ko.toJSON(viewData.myViewModel, null, 2)'>
-        </pre>
-      </div>
-    </div>
+This only works on View Models that aren't namespaced. Further, it hasn't been tested on pages with multiple view models.
 
-_Note: be sure to update the first parameter of the `ko.toJSON` function to match the variable that is storing your view model_
+##Browser Support
 
-###The CSS
+As of this release this has only been tested in Chrome 26.
 
-The CSS file provides the divs with some styling. You can load it in the `header` of your page with a `link` element:
+##Extending
 
-    <link rel="stylesheet" href="/css/kojs-debugger.css">
-
-###The JavaScript
-
-Place this script element for the Javascript toward the bottom of your page.
-
-    <script src="/js/ko-debugger.js"></script>
-
-##Dependencies
-
-- Knockout.js
+I included the uncompressed files I used to build this app in the `source` folder. If you wanted to expand the functionality of this plugin, look there!
 
 ##Licensing
 
 This is released under the [WTFPL](http://www.wtfpl.net/); that means you can do whatever you want with it.
 
-_I'd like to thank Ryan Niemeyer for writing [the first article](http://www.knockmeout.net/2011/06/10-things-to-know-about-knockoutjs-on.html) that I read which mentioned using the `ko.toJSON` utility to debug your viewModel, which ultimately inspired me to make this thing._
+##Roadmap
 
-##Version 1.0
+- Notification system for webpages that don't have the View Model
+- Support for multiple View Models
+- Filtering system for observables, calculated, and mapped variables
 
-Version 1 will include a filtering system. This will allow you to show only computed values, for instance, or otherwise other specific pieces of your view model. This feature should help with debugging the largest of view models.
+###Thanks
+
+_I'd like to thank Ryan Niemeyer firstly for writing [the article](http://www.knockmeout.net/2011/06/10-things-to-know-about-knockoutjs-on.html) that inspired me to make this thing, and secondly for advice on this project._
