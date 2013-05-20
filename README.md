@@ -1,7 +1,7 @@
 knockout-debug
 ==============
 
-_version 1.0.0_
+_version 1.0.1_
 
 When building a project with [Knockout](http://knockoutjs.com/), you might, at times, want to see what your `View Model` looks like. This bookmarklet lets you do that with a toggle-able, minimally-intrusive display.
 
@@ -11,15 +11,15 @@ Copy the code from the `ko-debug.js` file in the `bookmarklet` folder into a new
 
 Need a page to test it on? Try the [Knockout Tutorial page.](http://learn.knockoutjs.com/#/?tutorial=intro)
 
-You can show and hide the view model with the main button. The `x` will remove the debugger from your page.
+You can toggle the visibility of the view model display with the main button. The `x` will remove the debugger from the DOM entirely.
 
 ###Caveats
 
 This has only been tested on pages with a single view model.
 
-##Browser Support
+###Browser Support
 
-As of this release this has only been tested in Chrome 26.
+Chrome 26, Firefox 19, Opera 12
 
 ##Extending
 
