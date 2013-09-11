@@ -1,4 +1,4 @@
-_version 1.0.1_
+_version 1.0.2_
 
 When building a project that uses [Knockout.js](http://knockoutjs.com/), you might, at times, want to see what your View Model looks like. This bookmarklet lets you do that with a toggle-able, minimally-intrusive display.
 
