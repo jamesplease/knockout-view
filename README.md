@@ -1,4 +1,4 @@
-_version 1.0.1_
+_version 1.0.2_
 
 When building a project that uses [Knockout.js](http://knockoutjs.com/), you might, at times, want to see what your View Model looks like. This bookmarklet lets you do that with a toggle-able, minimally-intrusive display.
 
@@ -35,4 +35,4 @@ _Tested on Chrome 26, Firefox 19, Opera 12, Safari 6_
 
 ===
 
-_I'd like to thank Ryan Niemeyer twofold: first for writing [the article](http://www.knockmeout.net/2011/06/10-things-to-know-about-knockoutjs-on.html) that inspired me to make this, and second for his advice on this bookmarklet._
+_I'd like to thank Ryan Niemeyer twofold: first for writing [the enlightening article](http://www.knockmeout.net/2011/06/10-things-to-know-about-knockoutjs-on.html) that inspired me to make this, and second for his advice on this bookmarklet._
