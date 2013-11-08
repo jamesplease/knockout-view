@@ -7,8 +7,27 @@ javascript:
   var context = ko.contextFor(document.body);
 
   if (context && !document.getElementById("ko-debug")) {
+	
+	document.jsonSyntaxHighlight = function(json) {
+		json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+		return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+			var cls = 'number';
+			if (/^"/.test(match)) {
+				if (/:$/.test(match)) {
+					cls = 'key';
+				} else {
+					cls = 'string';
+				}
+			} else if (/true|false/.test(match)) {
+				cls = 'boolean';
+			} else if (/null/.test(match)) {
+				cls = 'null';
+			}
+			return '<span class="' + cls + '">' + match + '</span>';
+		});
+	};
 
-    var styleSheetText    = '#ko-debug{font-family:Arial;position:fixed;z-index:99999;left:10px;top:20px;font-size:13px;background:#f5f5f5;border:1px solid #eee;border-radius:3px;box-shadow:0 2px 2px rgba(0,0,0,.3)}#ko-debug-toggle{width:120px;height:18px;text-align:center;font-weight:bold;color:#444;padding:5px 2px 5px 2px;margin:0 5px;background:#f5f5f5;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;float:left}#ko-debug-close{float:left;color:#aaa;font-weight:bold;width:8px;margin:4px 0 6px 10px;cursor:pointer;height:18px}#ko-debug pre{height:450px;width:450px;overflow:auto;font-family:"Lucida Console",Monaco,monospace;line-height:14px;margin:0;background:#fff;border:1px solid #eee;box-shadow:0 2px 2px rgba(0,0,0,.3);padding:4px;color:#666;background:#fcfcfc;resize:both;position:absolute;left:0;top:40px}',
+    var styleSheetText    = '#ko-debug{font-family:Arial;position:fixed;z-index:99999;left:10px;top:20px;font-size:13px;background:#f5f5f5;border:1px solid #eee;border-radius:3px;box-shadow:0 2px 2px rgba(0,0,0,.3)}#ko-debug-toggle{width:120px;height:18px;text-align:center;font-weight:bold;color:#444;padding:5px 2px 5px 2px;margin:0 5px;background:#f5f5f5;cursor:pointer;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;float:left}#ko-debug-close{float:left;color:#aaa;font-weight:bold;width:8px;margin:4px 0 6px 10px;cursor:pointer;height:18px}#ko-debug pre{height:450px;width:450px;overflow:auto;font-family:"Lucida Console",Monaco,monospace;line-height:14px;margin:0;background:#fff;border:1px solid #eee;box-shadow:0 2px 2px rgba(0,0,0,.3);padding:4px;color:#666;background:#fcfcfc;resize:both;position:absolute;left:0;top:40px}#ko-debug-display .string{color:green;}#ko-debug-display .number{color:darkorange;}#ko-debug-display .boolean{color:blue;}#ko-debug-display .null{color:magenta;}#ko-debug-display .key{color:red;}',
         head              = document.getElementsByTagName('head')[0],
         debugStyle        = document.createElement("style"),
         viewModelDisplay  = document.createElement("pre"),
@@ -44,7 +63,8 @@ javascript:
     buttonText.nodeValue = hideModelText;
 
     viewModelDisplay.id = "ko-debug-display";
-    viewModelDisplay.setAttribute("data-bind", "text: ko.toJSON(data, null, 2)");
+    viewModelDisplay.setAttribute("data-bind", "html: document.jsonSyntaxHighlight(ko.toJSON(data, null, 2))");
+	viewModelDisplay.setAttribute("class", "prprint"); 
 
     debugClose.appendChild(closeText);
     displayToggle.appendChild(buttonText);
@@ -64,5 +84,3 @@ javascript:
   }
 
 }( window.ko ));
-
-
