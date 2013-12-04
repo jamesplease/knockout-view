@@ -1,0 +1,26 @@
+{
+  "name": "knockout-view",
+  "version": "2.0.0",
+  "description": "A bookmarklet that enables you to look at your View Models during development",
+  "repository": {
+    "type": "git",
+    "url": "https://jellyes2%40gmail.com@github.com/jmeas/knockout-view.git"
+  },
+  "keywords": [
+    "debug",
+    "knockout.js",
+    "knockout",
+    "bookmarklet"
+  ],
+  "author": "Jmeas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jmeas/knockout-view/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-sass": "~0.5.1"
+  }
+}
