@@ -1,12 +1,12 @@
-_version 1.0.2_
+_version 2.0.0_
 
 When building a project that uses [Knockout.js](http://knockoutjs.com/), you might, at times, want to see what your View Model looks like. This bookmarklet lets you do that with a toggle-able, minimally-intrusive display.
 
-![KO Debug](http://github.jmeas.com/ko-debug/ko-debug.jpg)
+![KO View](http://github.jmeas.com/ko-debug/ko-debug.jpg)
 
 ##Installation
 
-Copy the code from the `ko-debug.js` file in the `bookmarklet` directory of this repository into a new Bookmark in the browser of your choice. 
+Copy the code from the `ko-view.min.js` file in the `build` directory of this repository into a new Bookmark in the browser of your choice.
 
 ##Usage
 
