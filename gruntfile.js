@@ -3,78 +3,77 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     app: {
-      src: 'source',
-      tmp: 'tmp',
-      build: 'build'
+      src   : 'source',
+      tmp   : 'tmp',
+      build : 'build',
+      js    : '<%= app.src %>/js/ko-view.js',
+      sass  : '<%= app.src %>/sass/style.scss'
     },
     sass: {
       options: {
         style: 'compressed'
       },
       bookmarklet: {
-        src: '<%= app.src %>/sass/style.scss',
+        src: '<%= app.sass %>',
         dest: '<%= app.tmp %>/style.css'
       }
     },
-    compiler: {
+    processor: {
       options: {
         data: {
-          style: 'tmp/style.css'
+          style: '<%= sass.bookmarklet.dest %>'
         }
       },
       bookmarklet: {
-        src: '<%= app.src %>/js/ko-view.js',
+        src: '<%= app.js %>',
         dest: '<%= app.tmp %>/ko-view.compiled.js'
       }
     },
     jshint: {
       options: {
-        // Ignore the `javascript` label warning
+        curly: true,
         undef: true,
         unused: true,
-        '-W028': true,
         browser: true,
         globals: {
           console: true
-        }
+        },
+        // Ignore the `javascript` label warning
+        '-W028': true
       },
       bookmarklet: {
-        src: '<%= app.tmp %>/ko-view.compiled.js'
+        src: '<%= processor.bookmarklet.dest %>'
       }
     },
-    uglify: {
-      bookmarklet: {
-        src: '<%= app.tmp %>/ko-view.compiled.js',
-        dest: 'build/ko-view.min.js'
-      }
-    },
-    bookmarkletify: {
+    jsmin: {
       main: {
-        src: 'build/ko-view.min.js'
+        src: '<%= processor.bookmarklet.dest %>',
+        dest: 'build/ko-view.min.js'
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  grunt.registerMultiTask('bookmarkletify', 'Appends a javascript label to the start of your compressed file', function() {
+  grunt.registerMultiTask('jsmin', 'Minification via jsmin', function() {
 
-    var fileText = grunt.file.read(this.data.src);
+    var
+    jsmin = require('jsmin'),
+    code = grunt.file.read(this.data.src);
 
-    fileText = "javascript:" + fileText;
-    grunt.file.write(this.data.src, fileText);
+    minified = jsmin.jsmin(code, 3);
+    grunt.file.write(this.data.dest, minified);
 
   });
 
-  grunt.registerMultiTask('compiler', 'Builds JS files as Lo Dash templates', function() {
+  grunt.registerMultiTask('processor', 'Processes JS files as Lo Dash templates', function() {
 
     var
-    options = this.options(),
-    template    = grunt.file.read(this.data.src),
-    style       = grunt.file.read(options.data.style),
-    variables   = {
+    options   = this.options(),
+    template  = grunt.file.read(this.data.src),
+    style     = grunt.file.read(options.data.style),
+    variables = {
       // Sass adds a newline at the end of its compressed files
       style: style.replace(/\s$/, '')
     };
@@ -84,6 +83,7 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('default', ['sass', 'compiler', 'jshint', 'uglify', 'bookmarkletify']);
+  grunt.registerTask('default', ['sass', 'processor', 'jshint', 'jsmin']);
+  grunt.registerTask('testless', ['sass', 'processor', 'jsmin']);
 
 };

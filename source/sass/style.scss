@@ -162,6 +162,10 @@
   }
   .collapsed>.e {
       -webkit-transform:rotate(-90deg);
+      -moz-transform:rotate(-90deg);
+      -ms-transform:rotate(-90deg);
+      -o-transform:rotate(-90deg);
+      transform:rotate(-90deg);
       width:18px;
       height:20px;
       left:0px;
@@ -210,20 +214,6 @@
   }
   .k {
       color:#718c00;
-  }
-  #formattingMsg {
-      font:13px"Lucida Grande", "Segoe UI", "Tahoma";
-      padding:10px 0 0 8px;
-      margin:0;
-      color:#333
-  }
-  #formattingMsg>svg {
-      margin:0 7px;
-      position:relative;
-      top:1px
-  }
-  [hidden] {
-      display:none !important
   }
   span {
       white-space:pre-wrap

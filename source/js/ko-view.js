@@ -4,8 +4,7 @@ javascript:
 
   "use strict";
 
-  var
-  TYPE_STRING = 1,
+  var TYPE_STRING = 1,
   TYPE_NUMBER = 2,
   TYPE_OBJECT = 3,
   TYPE_ARRAY  = 4,
@@ -61,14 +60,7 @@ javascript:
   koViewMove        = getSpanClass('ko-view-move'),
   koViewToggle      = getSpanClass('ko-view-toggle'),
   koViewToggleText  = baseText.cloneNode(false),
-  koViewClose       = getSpanBoth('x', 'ko-view-close'),
-
-  koView = {
-    format: jsonObjToHtml,
-    close: closeView
-  };
-
-  window.koView = koView;
+  koViewClose       = getSpanBoth('x', 'ko-view-close');
 
   if (mac) {
     modKey = function (ev) {
@@ -93,7 +85,8 @@ javascript:
 
     koViewMove.setAttribute('draggable', 'true');
     koViewClose.setAttribute('data-bind', 'click: closeView');
-    koViewContent.setAttribute("data-bind", "html: window.koView.format(ko.toJS(data))");
+    koViewContent.setAttribute("data-bind", "html: format(ko.toJS(data))");
+
 
     koViewMenu.appendChild(koViewMove);
     koViewMenu.appendChild(koViewToggle);
@@ -105,7 +98,7 @@ javascript:
     fragment.appendChild(koViewContainer);
     document.body.appendChild(fragment);
     
-    ko.applyBindings({ data: context.$root, closeView: closeView }, koViewContainer);
+    ko.applyBindings({ data: context.$root, closeView: closeView, format: jsonObjToHtml }, koViewContainer);
 
     document.addEventListener(
       'click',
@@ -126,8 +119,17 @@ javascript:
 
   function closeView() {
 
+    // Stop listening
+    koViewMove.removeEventListener( 'dragstart', dragStart );
+    document.removeEventListener( 'click', generalClick );
+    document.body.removeEventListener( 'dragover', dragOver );
+    document.body.removeEventListener( 'drop', dropEvent );
+
+    // Remove the stylesheet and element
     ko.removeNode(koViewContainer);
     head.removeChild(koViewStyle);
+
+
 
   }
 
@@ -150,8 +152,7 @@ javascript:
 
   function dropEvent( event ) {
 
-    var
-    offset = event.dataTransfer.getData("text/plain").split(','),
+    var offset = event.dataTransfer.getData("text/plain").split(','),
     style = window.getComputedStyle(koViewContainer, null),
     left = parseInt(style.getPropertyValue("left"),10),
     top = parseInt(style.getPropertyValue("top"),10);
@@ -191,14 +192,17 @@ javascript:
     return span;
   }
 
-  function getKvovDOM(value, keyName, depth) {
+  function exists(object) {
+    return (object !== null && typeof object !== 'undefined');
+  }
 
-    depth = depth ? depth : 0;
+  function getKvovDOM(value, keyName, parentKeyName, depth) {
 
-    console.log(depth, ";", keyName);
+    depth         = ( exists(depth) )         ? depth         : 0;
+    parentKeyName = ( exists(parentKeyName) ) ? parentKeyName + "-" + parentKeyName : "root";
+    console.log(keyName, parentKeyName, exists(parentKeyName)); 
 
-    var
-    type,
+    var type,
     kvov,
     nonZeroSize,
     templates = templatesObj, // bring into scope for tiny speed boost
@@ -207,22 +211,28 @@ javascript:
     valueElement;
 
     // Establish value type
-      if (typeof value === 'string')
+      if (typeof value === 'string') {
         type = TYPE_STRING;
-      else if (typeof value === 'number')
+      }
+      else if (typeof value === 'number') {
         type = TYPE_NUMBER;
-      else if (value === false || value === true )
+      }
+      else if (value === false || value === true ) {
         type = TYPE_BOOL;
-      else if (value === null)
+      }
+      else if (value === null) {
         type = TYPE_NULL;
-      else if (value instanceof Array)
+      }
+      else if (value instanceof Array) {
         type = TYPE_ARRAY;
-      else
+      }
+      else {
         type = TYPE_OBJECT;
+      }
 
     // Root node for this kvov
       kvov = templates.t_kvov.cloneNode(false);
-      kvov.classList.add(keyName+depth);
+      kvov.classList.add("c"+"-"+parentKeyName);
     
     // Add an 'expander' first (if this is object/array with non-zero size)
       if (type === TYPE_OBJECT || type === TYPE_ARRAY) {
@@ -233,8 +243,9 @@ javascript:
             break; // no need to keep counting; only need one
           }
         }
-        if (nonZeroSize)
+        if (nonZeroSize) {
           kvov.appendChild(  templates.t_exp.cloneNode(false) );
+        }
       }
       
     // If there's a key, add that before the value
@@ -302,7 +313,7 @@ javascript:
                 for (k in value) {
                   if (value.hasOwnProperty(k)) {
                     count++;
-                    childKvov =  getKvovDOM(value[k], k, depth+1);
+                    childKvov =  getKvovDOM(value[k], k, keyName+"0", depth+1);
                     // Add comma
                       comma = templates.t_commaText.cloneNode();
                       childKvov.appendChild(comma);
@@ -331,10 +342,11 @@ javascript:
               // For each key/value pair, add the markup
                 for (var i=0, length=value.length, lastIndex=length-1; i<length; i++) {
                   // Make a new kvov, with no key
-                    childKvov = getKvovDOM(value[i], false, depth+1);
+                    childKvov = getKvovDOM(value[i], false, keyName+"0", depth+1);
                   // Add comma if not last one
-                    if (i < lastIndex)
+                    if (i < lastIndex) {
                       childKvov.appendChild( templates.t_commaText.cloneNode() );
+                    }
                   // Append the child kvov
                     blockInner.appendChild( childKvov );
                 }
@@ -346,10 +358,12 @@ javascript:
           break;
 
         case TYPE_BOOL:
-          if (value)
+          if (value) {
             kvov.appendChild( templates.t_true.cloneNode(true) );
-          else
+          }
+          else {
             kvov.appendChild( templates.t_false.cloneNode(true) );
+          }
           break;
 
         case TYPE_NULL:
@@ -380,8 +394,9 @@ javascript:
             while ( blockInner && !blockInner.classList.contains('blockInner') ) {
               blockInner = blockInner.nextElementSibling;
             }
-            if (!blockInner)
+            if (!blockInner) {
               continue;
+            }
 
           // See how many children in the blockInner
             count = blockInner.children.length;
@@ -398,8 +413,9 @@ javascript:
   }
 
   function expand(elements) {
-    for (var i = elements.length - 1; i >= 0; i--)
+    for (var i = elements.length - 1; i >= 0; i--) {
       elements[i].classList.remove('collapsed');
+    }
   }
 
   function generalClick(ev) {
@@ -417,17 +433,21 @@ javascript:
         // Expand or collapse
           if (parent.classList.contains('collapsed')) {
             // EXPAND
-              if (modKey(ev))
+              if (modKey(ev)) {
                 expand(parent.parentNode.children);
-              else
+              }
+              else {
                 expand([parent]);
+              }
           }
           else {
             // COLLAPSE
-              if (modKey(ev))
+              if (modKey(ev)) {
                 collapse(parent.parentNode.children);
-              else
+              }
+              else {
                 collapse([parent]);
+              }
           }
 
         return;
@@ -438,23 +458,23 @@ javascript:
   function jsonObjToHtml(obj) {
 
     // Format object (using recursive kvov builder)
-      var rootKvov = getKvovDOM(obj, false);
+    var rootKvov = getKvovDOM(obj, false);
 
     // The whole DOM is now built.
 
     // Set class on root node to identify it
-      rootKvov.classList.add('rootKvov');
+    rootKvov.classList.add('rootKvov');
       
     // Make div#formattedJson and append the root kvov
-      var divFormattedJson = document.createElement('div');
-      divFormattedJson.id = 'formattedJson';
-      divFormattedJson.appendChild( rootKvov );
+    var divFormattedJson = document.createElement('div');
+    divFormattedJson.id = 'formattedJson';
+    divFormattedJson.appendChild( rootKvov );
     
-    // Convert it to an HTML string (shame about this step, but necessary for passing it through to the content page)
-      var returnHTML = divFormattedJson.outerHTML;
+    // Get the HTML
+    var returnHTML = divFormattedJson.outerHTML;
 
     // Return the HTML
-      return returnHTML;
+    return returnHTML;
   }
 
 })( window.ko );
