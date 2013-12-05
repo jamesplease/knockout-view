@@ -198,9 +198,9 @@ javascript:
 
   function getKvovDOM(value, keyName, parentKeyName, depth) {
 
-    depth         = ( exists(depth) )         ? depth         : 0;
-    parentKeyName = ( exists(parentKeyName) ) ? parentKeyName + "-" + parentKeyName : "root";
-    console.log(keyName, parentKeyName, exists(parentKeyName)); 
+    // depth         = ( exists(depth) )         ? depth         : 0;
+    // parentKeyName = ( exists(parentKeyName) ) ? parentKeyName + "-" + parentKeyName : "root";
+    // console.log(keyName, parentKeyName, exists(parentKeyName)); 
 
     var type,
     kvov,
@@ -232,7 +232,7 @@ javascript:
 
     // Root node for this kvov
       kvov = templates.t_kvov.cloneNode(false);
-      kvov.classList.add("c"+"-"+parentKeyName);
+      // kvov.classList.add("c"+"-"+parentKeyName);
     
     // Add an 'expander' first (if this is object/array with non-zero size)
       if (type === TYPE_OBJECT || type === TYPE_ARRAY) {
