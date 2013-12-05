@@ -31,4 +31,4 @@ Want to make some changes? It's easy to do with grunt.
 
 ##Licensing
 
-Don't worry about this stuff. [Do whatever you want with it](http://www.wtfpl.net/).
+Don't fret about legal stuff. [Do whatever you want with it](http://www.wtfpl.net/).
