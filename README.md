@@ -3,7 +3,7 @@
 
 Use this bookmarklet to view your [Knockout](http://knockoutjs.com/) View Models with a toggle-able, minimally-intrusive display.
 
-![KO View](http://github.jmeas.com/ko-view/ko-view.gif)
+![KO View](http://github.jmeas.com/ko-view/ko-view-cursor.gif)
 
 ##Installation
 
