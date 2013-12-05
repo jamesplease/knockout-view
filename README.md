@@ -3,7 +3,7 @@
 
 Use this bookmarklet to view your [Knockout](http://knockoutjs.com/) View Models with a toggle-able, minimally-intrusive display.
 
-![KO View](http://github.jmeas.com/ko-debug/ko-view.jpg)
+![KO View](http://github.jmeas.com/ko-view/ko-view.gif)
 
 ##Installation
 
@@ -31,4 +31,4 @@ Want to make some changes? It's easy to do with grunt.
 
 ##Licensing
 
-This is released under the [WTFPL](http://www.wtfpl.net/); that means you can do whatever you want with it.
+Don't worry about this stuff. [Do whatever you want with it](http://www.wtfpl.net/).
